@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border=1>
+      <tr>
+        <th>Judul</th>
+        <th>Tanggal</th>
+        <th>link</th>
+      </tr>
+      <% for(var i=0; i<anime[0].ongoing.length;i++){ %>
+      <tr>
+        <td><%= anime[0].ongoing[i].judul %></td>
+        <td><%= anime[0].ongoing[i].tanggal %></td>
+        <td><a href="/episode/<%= anime[0].ongoing[i].base %>"><%= anime[0].ongoing[i].link %></a></td>
+      </tr>
+        <% } %>
+    </table>
+  </body>
+  <script></script>
+</html>
