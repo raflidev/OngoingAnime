@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border=1>
+      <tr>
+        <th>Judul</th>
+        <th>Tanggal</th>
+        <th>link</th>
+      </tr>
+      <% for(var i=0; i<episode.length;i++){ %>
+      <tr>
+        <td><%= episode[i].judul %></td>
+        <td><%= episode[i].tanggal %></td>
+        <td><a href="<%= episode[i].link %>" target="_blank"><%= episode[i].link %></a></td>
+      </tr>
+        <% } %>
+    </table>
+  </body>
+  <script></script>
+</html>
