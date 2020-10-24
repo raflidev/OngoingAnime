@@ -1,4 +1,4 @@
-import { getUrl, getListEpisode } from "./scrapping";
+import { getUrl, getListEpisode, getWatch } from "./scrapping";
 import express from "express";
 import CryptoJS from "crypto-js";
 
@@ -35,6 +35,15 @@ app.get("/episode/:base", async (req, res) => {
   );
   res.render("episode", {
     episode: tampilEpisode,
+  });
+});
+
+app.get("/nonton/:base", async (req, res) => {
+  const tampilNonton = await getWatch(
+    CryptoJS.enc.Utf8.stringify(CryptoJS.enc.Base64.parse(req.params.base))
+  );
+  res.render("nonton", {
+    nonton: tampilNonton,
   });
 });
 

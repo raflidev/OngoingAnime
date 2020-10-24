@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node -r esm main.js",
-    "start": "nodemon -r esm main.js"
+    "start": "nodemon -r esm main.js",
+    "test": "nodemon -r esm scrapping.js"
   },
   "author": "",
   "license": "ISC",
