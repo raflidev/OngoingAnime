@@ -1,5 +1,5 @@
-module.export = {
+module.exports = {
   devServer: {
-    proxy: "https://otakudesu.tv/",
+    proxy: "https://otakudesu.tv",
   },
 };

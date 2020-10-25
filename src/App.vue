@@ -2,7 +2,9 @@
   <div id="app">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#/">OnGoing</a>
+        <router-link to="/">
+          <a class="navbar-brand">OnGoing</a>
+        </router-link>
         <button
           class="navbar-toggler"
           type="button"

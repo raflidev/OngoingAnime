@@ -3,9 +3,9 @@
     <div v-if="animeShow" class="d-flex flex-wrap justify-content-around">
       <div v-for="anime in anime[0].ongoing" :key="anime.index">
         <div class="card mb-4" style="width: 14rem;">
-          <a :href="anime.link" class="stretched-link"
+          <router-link :to="'/episode/' + anime.base" class="stretched-link"
             ><img :src="anime.gambar" class="card-img-top"
-          /></a>
+          /></router-link>
           <div class="card-body" style="height: 10rem;">
             <h5 class="card-title text-bold">{{ anime.judul }}</h5>
           </div>
@@ -31,6 +31,7 @@
 // @ is an alias to /src
 import axios from "axios";
 import cheerio from "cheerio";
+import CryptoJS from "crypto-js";
 export default {
   name: "Home",
   data() {
@@ -40,24 +41,33 @@ export default {
     };
   },
   mounted() {
-    axios.get("https://otakudesu.tv/ongoing-anime/").then((response) => {
-      this.anime = [];
-      this.anime.push({
-        date: Date.now(),
-        ongoing: [],
-      });
-      const $ = cheerio.load(response.data);
-      $(".detpost").each((res) => {
-        this.anime[0].ongoing.push({
-          judul: $(".detpost").find(".jdlflm")[res].children[0].data,
-          tanggal: $(".detpost").find(".newnime")[res].children[0].data,
-          link: $(".detpost").find("a")[res].children[0].parent.attribs.href,
-          gambar: $(".detpost").find("a")[res].children[1].children[0].attribs
-            .src,
+    axios
+      .get("https://otakudesu.tv/ongoing-anime/", {
+        crossDomain: true,
+      })
+      .then((response) => {
+        this.anime = [];
+        this.anime.push({
+          date: Date.now(),
+          ongoing: [],
         });
+        const $ = cheerio.load(response.data);
+        $(".detpost").each((res) => {
+          this.anime[0].ongoing.push({
+            judul: $(".detpost").find(".jdlflm")[res].children[0].data,
+            tanggal: $(".detpost").find(".newnime")[res].children[0].data,
+            link: $(".detpost").find("a")[res].children[0].parent.attribs.href,
+            base: CryptoJS.enc.Base64.stringify(
+              CryptoJS.enc.Utf8.parse(
+                $(".detpost").find("a")[res].children[0].parent.attribs.href
+              )
+            ),
+            gambar: $(".detpost").find("a")[res].children[1].children[0].attribs
+              .src,
+          });
+        });
+        this.animeShow = true;
       });
-      this.animeShow = true;
-    });
   },
 };
 </script>
