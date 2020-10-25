@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Episode from "../views/Episode.vue";
+import Nonton from "../views/Nonton.vue";
 
 Vue.use(VueRouter);
 
@@ -13,8 +14,13 @@ const routes = [
   },
   {
     path: "/episode/:base",
-    name: "Episdoe",
+    name: "Episode",
     component: Episode,
+  },
+  {
+    path: "/nonton/:base",
+    name: "Nonton",
+    component: Nonton,
   },
   {
     path: "/about",

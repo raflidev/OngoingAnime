@@ -6,9 +6,9 @@
           <img :src="gambar[0].gambar" alt="" srcset="" />
         </div>
         <div class="col-sm-12 col-lg-9">
-          <h2>{{ episode[0].judul }}</h2>
-          <p>Daftar Episode:</p>
-          <div class="list-group pt-3">
+          <h2>{{ judul[0].judul }}</h2>
+          <p class="pt-3">Daftar Episode:</p>
+          <div class="list-group">
             <router-link
               :to="'/nonton/' + episode.base"
               v-for="episode in episode"
@@ -51,6 +51,7 @@ export default {
     return {
       episode: [],
       gambar: [],
+      judul: [],
       episodeShow: false,
     };
   },
@@ -66,7 +67,9 @@ export default {
         this.gambar.push({
           gambar: $("img")[1].attribs.src,
         });
-
+        this.judul.push({
+          judul: $(".jdlrx")[0].children[0].children[0].data,
+        });
         $(".episodelist li").each((res) => {
           this.episode.push({
             link: $(".episodelist li").find("a[data-wpel-link=internal]")[res]
@@ -81,10 +84,9 @@ export default {
               .children[0].data,
             tanggal: $(".episodelist li").find(".zeebr")[res].children[0].data,
           });
-          console.log(
-            $(".episodelist li").find("a[data-wpel-link=internal]")[res]
-              .children[0].data
-          );
+          //   console.log(
+          //     $(".episodelist li").find("a[data-wpel-link=internal]")[res]
+          //   );
         });
         this.episodeShow = true;
       });
