@@ -2,7 +2,7 @@
   "name": "ongoinganime",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "functions/server.js",
   "scripts": {
     "dev": "node -r esm main.js",
     "start": "nodemon -r esm main.js",
