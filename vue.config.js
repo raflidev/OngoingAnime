@@ -1,5 +1,7 @@
 module.exports = {
-  devServer: {
-    proxy: "https://otakudesu.tv",
+  configureWebpack: {
+    devServer: {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    },
   },
 };
