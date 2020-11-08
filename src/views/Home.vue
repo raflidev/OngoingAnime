@@ -29,9 +29,16 @@
 
 <script>
 // @ is an alias to /src
+
 import axios from "axios";
 import cheerio from "cheerio";
 import CryptoJS from "crypto-js";
+const axiosCookieJarSupport = require('axios-cookiejar-support');
+const tough = require('tough-cookie');
+ 
+axiosCookieJarSupport(axios);
+ 
+const cookieJar = new tough.CookieJar();
 export default {
   name: "Home",
   data() {
@@ -41,7 +48,23 @@ export default {
     };
   },
   mounted() {
-    axios.get("https://www.otakudesu.tv/ongoing-anime/").then(
+    axios.get("https://cors-anywhere.herokuapp.com/"+ "https://www.otakudesu.tv/ongoing-anime/",
+    {
+      jar: cookieJar,
+      headers: {
+      "Content-Type": "text/html;charset=UTF-8",
+      "Accept": "application/json",
+      "Access-Control-Allow-Credentials": "true",
+      "Access-Control-Allow-Origin" : "*",
+      "Access-Control-Allow-Max-Age": "1800",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
+      "crossDomain": "true",
+      "X-Requested-With" : "XMLHttpRequest",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36"
+      },
+      
+    }).then(
       (response) => {
         if (response.status == 200) {
           this.anime = [];
