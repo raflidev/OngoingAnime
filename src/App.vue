@@ -91,6 +91,21 @@ body {
 <script>
 export default {
   name: "app",
+  mounted() {
+    if (localStorage.darkSwitch) {
+      var darkSwitch = document.getElementById("darkSwitch");
+      localStorage.setItem("darkSwitch", "dark");
+      var darkThemeSelected =
+        localStorage.getItem("darkSwitch") !== null &&
+        localStorage.getItem("darkSwitch") === "dark";
+      darkSwitch.check = darkThemeSelected
+        ? document.body.setAttribute("data-theme", "dark")
+        : document.body.removeAttribute("data-theme");
+      if (!darkSwitch.checked) {
+        darkSwitch.checked = true;
+      }
+    }
+  },
   methods: {
     darkMode() {
       var darkSwitch = document.getElementById("darkSwitch");

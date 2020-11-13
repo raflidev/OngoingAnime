@@ -1,25 +1,25 @@
 <template>
   <div class="container">
-    <div v-if="episodeShow">
+    <div v-if="episode.length > 0">
       <div class="row mt-4">
         <div class="col-sm-12 col-lg-3">
-          <img :src="gambar[0].gambar" alt="" srcset="" />
+          <img :src="episode[0].thumb" alt="" srcset="" />
         </div>
         <div class="col-sm-12 col-lg-9">
-          <h2>{{ judul[0].judul }}</h2>
+          <h2>{{ episode[0].title }}</h2>
           <p class="pt-3">Daftar Episode:</p>
           <div class="list-group">
             <router-link
-              :to="'/nonton/' + episode.base"
-              v-for="episode in episode"
+              :to="'/nonton/' + episode.id"
+              v-for="episode in episode[0].episode_list"
               :key="episode.index"
               class="list-group-item list-group-item-action"
             >
               <b>
-                {{ episode.judul }}
+                {{ episode.title }}
               </b>
               <p>
-                {{ episode.tanggal }}
+                {{ episode.uploaded_on }}
               </p>
             </router-link>
           </div>
@@ -43,52 +43,20 @@
 
 <script>
 import axios from "axios";
-import cheerio from "cheerio";
-import CryptoJS from "crypto-js";
 export default {
   name: "Episode",
   data() {
     return {
       episode: [],
-      gambar: [],
-      judul: [],
-      episodeShow: false,
     };
   },
   mounted() {
     axios
-      .get(
-        CryptoJS.enc.Utf8.stringify(
-          CryptoJS.enc.Base64.parse(this.$route.params.base)
-        )
-      )
-      .then((response) => {
-        const $ = cheerio.load(response.data);
-        this.gambar.push({
-          gambar: $("img")[1].attribs.src,
-        });
-        this.judul.push({
-          judul: $(".jdlrx")[0].children[0].children[0].data,
-        });
-        $(".episodelist li").each((res) => {
-          this.episode.push({
-            link: $(".episodelist li").find("a[data-wpel-link=internal]")[res]
-              .attribs.href,
-            base: CryptoJS.enc.Base64.stringify(
-              CryptoJS.enc.Utf8.parse(
-                $(".episodelist li").find("a[data-wpel-link=internal]")[res]
-                  .attribs.href
-              )
-            ),
-            judul: $(".episodelist li").find("a[data-wpel-link=internal]")[res]
-              .children[0].data,
-            tanggal: $(".episodelist li").find(".zeebr")[res].children[0].data,
-          });
-          //   console.log(
-          //     $(".episodelist li").find("a[data-wpel-link=internal]")[res]
-          //   );
-        });
-        this.episodeShow = true;
+      .get(`https://anime.kaedenoki.net/api/anime/${this.$route.params.base}`)
+      .then((res) => {
+        if (res.status == 200) {
+          this.episode.push(res.data);
+        }
       });
   },
 };
