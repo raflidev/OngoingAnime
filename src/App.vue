@@ -19,8 +19,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <router-link tag="li" class="nav-item" active-class="active" to="/"
+            <router-link tag="li" class="nav-item" active-class="active" to="/" exact
               ><a class="nav-link">Beranda</a></router-link
+            >
+            <router-link tag="li" class="nav-item" active-class="active" to="about" exact
+              ><a class="nav-link">About</a></router-link
             >
           </ul>
           <li>

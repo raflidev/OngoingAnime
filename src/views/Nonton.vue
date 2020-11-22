@@ -2,8 +2,9 @@
   <div class="container">
     <div v-if="nonton.length > 0">
       <div class="row justify-content-center mt-5">
-        <div class="col-6">
-          <video width="500" height="300" controls>
+        <div class="col-9">
+          <h2 class="text-center mb-4">{{nonton[0].title}}</h2>
+          <video width="800" height="400" controls>
             <source :src="nonton[0].link_stream" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

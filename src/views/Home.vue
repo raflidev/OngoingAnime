@@ -44,9 +44,9 @@ export default {
     };
   },
   mounted() {
-    axios.get("https://anime.kaedenoki.net/api/home").then((res) => {
+    axios.get("https://anime.kaedenoki.net/api/ongoing").then((res) => {
       if (res.status == 200) {
-        this.anime.push(res.data.home.on_going);
+        this.anime.push(res.data.animeList);
       }
     });
   },

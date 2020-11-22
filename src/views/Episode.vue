@@ -7,6 +7,19 @@
         </div>
         <div class="col-sm-12 col-lg-9">
           <h2>{{ episode[0].title }}</h2>
+          <div>
+            <span>{{episode[0].japanase}}</span>
+            <p>{{episode[0].producer}}</p>
+          </div>
+          <div>
+            <p>Sinopsis :</p>
+            <div v-if="!readmore" >
+              {{episode[0].synopsis.substring(0, 200)}} <a class="text-primary" @click="readmore = true">baca selengkapnya</a>
+            </div>
+            <div v-else>
+              {{episode[0].synopsis}} <a class="text-primary" @click="readmore = false">tutup sinopsis</a>
+            </div>
+          </div>
           <p class="pt-3">Daftar Episode:</p>
           <div class="list-group">
             <router-link
@@ -48,6 +61,7 @@ export default {
   data() {
     return {
       episode: [],
+      readmore: false
     };
   },
   mounted() {
