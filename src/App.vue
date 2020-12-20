@@ -83,12 +83,19 @@ body {
 [data-theme="dark"] a.text-dark:hover {
   color: white !important;
 }
-[data-theme="dark"] .nav-link {
+[data-theme="dark"] .nav-link{
   color: white !important;
+}
+[data-theme="dark"] li.list-group-item{
+  color: #000 !important;
 }
 [data-theme="dark"] .navbar-light .navbar-toggler {
   color: rgba(255, 255, 255, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.1) !important;
+}
+li.list-group-item:hover{
+  background-color:#007bff;
+  color:#fff!important
 }
 </style>
 <script>

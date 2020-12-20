@@ -69,6 +69,7 @@ export default {
       .get(`https://anime.kaedenoki.net/api/anime/${this.$route.params.base}`)
       .then((res) => {
         if (res.status == 200) {
+          localStorage.setItem("anime", this.$route.params.base);
           this.episode.push(res.data);
         }
       });
@@ -76,4 +77,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.list-group{
+  overflow:scroll;
+  overflow-x:hidden;
+  max-height: 500px;
+}
+</style>
