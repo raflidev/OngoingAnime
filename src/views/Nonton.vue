@@ -24,25 +24,12 @@
         </div>
         </div>
       
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3">
             <div class="list-group">
               <li class="list-group-item"
               v-for="episode in episode[0].episode_list"
               :key="episode.index"
               @click="Nonton(episode.id)">{{ episode.title }}</li>
-            <!-- <router-link
-              :to="'/nonton/' + episode.id"
-              v-for="episode in episode[0].episode_list"
-              :key="episode.index"
-              class="list-group-item list-group-item-action"
-            >
-              <b>
-                {{ episode.title }}
-              </b>
-              <p>
-                {{ episode.uploaded_on }}
-              </p>
-            </router-link> -->
           </div>
         </div>
       </div>

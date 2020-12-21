@@ -5,11 +5,11 @@
       class="d-flex flex-wrap justify-content-around"
     >
       <div v-for="anime in anime[0]" :key="anime.index">
-        <div class="card mb-4" style="width: 14rem" :title="anime.title">
+        <div class="card mb-4" style="width: 10rem" :title="anime.title">
           <router-link :to="'/episode/' + anime.id" class="stretched-link"
             ><img :src="anime.thumb" class="card-img-top"
           /></router-link>
-          <div class="card-body" style="height: 10rem">
+          <div class="card-body" style="max-height: 10rem">
             <h5 class="card-title text-bold" :title="anime.title">
               {{ anime.title }}
             </h5>
