@@ -4,18 +4,18 @@
       v-if="anime.length > 0"
       class="d-flex flex-wrap justify-content-around"
     >
-      <div v-for="anime in anime[0]" :key="anime.index">
-        <div class="card mb-4" style="width: 10rem" :title="anime.title">
-          <router-link :to="'/episode/' + anime.id" class="stretched-link"
-            ><img :src="anime.thumb" class="card-img-top"
-          /></router-link>
-          <div class="card-body" style="max-height: 10rem">
-            <h5 class="card-title text-bold" :title="anime.title">
-              {{ anime.title }}
-            </h5>
+        <div v-for="anime in anime[0]" :key="anime.index">
+          <div class="card mb-4" style="width: 10rem" :title="anime.title">
+            <router-link :to="'/episode/' + anime.id" class="stretched-link"
+              ><img :src="anime.thumb" class="card-img-top"
+            /></router-link>
+            <div class="card-body" style="max-height: 15rem">
+              <h5 class="card-title text-bold" :title="anime.title">
+                {{ anime.title }}
+              </h5>
+            </div>
           </div>
         </div>
-      </div>
     </div>
     <div v-else class="d-flex justify-content-center align-self-center">
       <div class="text-center mt-5 pt-5">
@@ -31,10 +31,15 @@
     </div>
   </div>
 </template>
-
+<style scoped>
+@media screen and (max-width:411px){
+  .card.mb-4{
+    width:8rem!important
+  }
+}
+</style>
 <script>
 // @ is an alias to /src
-
 import axios from "axios";
 export default {
   name: "Home",
