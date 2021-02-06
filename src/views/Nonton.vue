@@ -5,7 +5,23 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
          <div v-if="nonton.length > 0">
           <h2 class="text-center mb-4">{{nonton[0].title}}</h2>
-          <video class="img-fluid" width="800" height="400" controls>
+          <div v-if="nonton[0].link_stream == '-'">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              Layanan stream {{nonton[0].title}} belum tersedia disystem kami, silakan download secara manual
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div v-for="quality in nonton[0].quality" :key="quality.index" class="text-center mb-3">
+              <div class="mb-3 font-weight-bold">
+                {{quality.quality}} - {{quality.size}}
+              </div>
+              <div>
+                <a v-for="download in quality.download_links" :key="download.index" class="btn btn-warning text-black mr-3 mb-3" target="_blank" :href="download.link">{{download.host}}</a>
+              </div>
+            </div>
+          </div>
+          <video v-else class="img-fluid" width="800" height="400" controls>
             <source :src="nonton[0].link_stream" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
